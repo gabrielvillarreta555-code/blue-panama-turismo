@@ -5,10 +5,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Bocas del Toro forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03"
   },
   {
@@ -17,10 +14,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Coclé forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03",
     "photo": "valle"
   },
@@ -30,10 +24,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Colón forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03",
     "photo": "portobelo"
   },
@@ -43,10 +34,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Chiriquí forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03",
     "photo": "boquete"
   },
@@ -56,10 +44,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Darién forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03"
   },
   {
@@ -68,10 +53,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Herrera forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03"
   },
   {
@@ -80,10 +62,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Los Santos forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03"
   },
   {
@@ -92,10 +71,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Panamá forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03",
     "photo": "panama"
   },
@@ -105,10 +81,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Panamá Oeste forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03"
   },
   {
@@ -117,10 +90,7 @@
     "kind": "provincia",
     "administrativeLevel": "provincia",
     "description": "Veraguas forma parte de las diez provincias de Panamá. Este espacio reúne los destinos documentados de la provincia y sus fuentes para ayudarte a explorar.",
-    "sources": [
-      "te-comarcas",
-      "ign-dpa"
-    ],
+    "sources": ["te-comarcas", "ign-dpa"],
     "verified": "2026-11-03",
     "photo": "coiba"
   },
@@ -131,9 +101,7 @@
     "administrativeLevel": "distrito",
     "parentId": "panama",
     "description": "Distrito de Chepo.",
-    "sources": [
-      "te-comarcas"
-    ],
+    "sources": ["te-comarcas"],
     "verified": "2026-11-03"
   },
   {
@@ -143,9 +111,7 @@
     "administrativeLevel": "distrito",
     "parentId": "darien",
     "description": "Distrito de Pinogana.",
-    "sources": [
-      "te-comarcas"
-    ],
+    "sources": ["te-comarcas"],
     "verified": "2026-11-03"
   },
   {
@@ -155,9 +121,7 @@
     "administrativeLevel": "distrito",
     "parentId": "cocle",
     "description": "Distrito de Antón.",
-    "sources": [
-      "atp-valle-territorio"
-    ],
+    "sources": ["atp-valle-territorio"],
     "verified": "2026-11-03"
   },
   {
@@ -167,9 +131,7 @@
     "administrativeLevel": "corregimiento",
     "parentId": "anton",
     "description": "Corregimiento del distrito de Antón.",
-    "sources": [
-      "atp-valle-territorio"
-    ],
+    "sources": ["atp-valle-territorio"],
     "verified": "2026-11-03"
   },
   {
@@ -178,10 +140,7 @@
     "kind": "comarca",
     "administrativeLevel": "provincia",
     "description": "Guna Yala es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "te-comarcas"
-    ],
+    "sources": ["ign-dpa", "te-comarcas"],
     "verified": "2026-11-03",
     "note": "No se crea el distrito ficticio que algunas capas utilizan únicamente para uniformar su representación cartográfica."
   },
@@ -191,10 +150,7 @@
     "kind": "comarca",
     "administrativeLevel": "provincia",
     "description": "Emberá-Wounaan es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "te-comarcas"
-    ],
+    "sources": ["ign-dpa", "te-comarcas"],
     "verified": "2026-11-03"
   },
   {
@@ -203,10 +159,7 @@
     "kind": "comarca",
     "administrativeLevel": "provincia",
     "description": "Ngäbe-Buglé es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "te-comarcas"
-    ],
+    "sources": ["ign-dpa", "te-comarcas"],
     "verified": "2026-11-03"
   },
   {
@@ -215,10 +168,7 @@
     "kind": "comarca",
     "administrativeLevel": "distrito",
     "description": "Naso Tjër Di es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "naso-ley"
-    ],
+    "sources": ["ign-dpa", "naso-ley"],
     "verified": "2026-11-03",
     "note": "División política especial creada por la Ley 188 de 2020. La cartografía consultada la representa a nivel de distrito y advierte inconsistencias en los límites de sus corregimientos. No se importan límites ni se fuerza una provincia superior."
   },
@@ -228,10 +178,7 @@
     "kind": "comarca",
     "administrativeLevel": "corregimiento",
     "description": "Guna de Madugandí es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "te-comarcas"
-    ],
+    "sources": ["ign-dpa", "te-comarcas"],
     "verified": "2026-11-03",
     "parentId": "chepo"
   },
@@ -241,10 +188,7 @@
     "kind": "comarca",
     "administrativeLevel": "corregimiento",
     "description": "Guna de Wargandí es una comarca indígena de Panamá. Su organización y sus autoridades propias deben respetarse al documentar visitas y experiencias.",
-    "sources": [
-      "ign-dpa",
-      "te-comarcas"
-    ],
+    "sources": ["ign-dpa", "te-comarcas"],
     "verified": "2026-11-03",
     "parentId": "pinogana"
   }

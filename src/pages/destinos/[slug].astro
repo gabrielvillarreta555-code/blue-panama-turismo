@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { destinationStructuredData } from '../../lib/seo';
+import Photo from '../../components/Photo.astro';
+import Fact from '../../components/Fact.astro';
+import { getCatalog } from '../../lib/catalog';
+import { experiences } from '../../lib/experiences';
+export async function getStaticPaths() {
+  const { destinations } = await getCatalog();
+  return destinations.map((destination) => ({
+    params: { slug: destination.slug },
+    props: { destination },
+  }));
+}
+const { destination: d } = Astro.props;
+const { territories, regions, sources } = await getCatalog();
+const regionNames = d.regions.map((id) => regions.find((r) => r.id === id)!.name);
+const coords = d.coordinates.status === 'confirmado' ? d.coordinates.value : null;
+const adminName = (field: typeof d.district) =>
+  field.status === 'confirmado' ? territories.find((t) => t.id === field.value)?.name : undefined;
+---
+
+<Layout
+  title={d.name}
+  socialImage={d.photo ?? null}
+  description={d.summary}
+  structuredData={
+    Astro.site
+      ? destinationStructuredData(d, new URL(`/destinos/${d.slug}/`, Astro.site).href)
+      : undefined
+  }
+>
+  <article class="container page-top">
+    <nav class="crumbs" aria-label="Ruta de navegación">
+      <a href="/">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <a href="/explorar/">Destinos</a>
+      <span aria-hidden="true">/</span>
+      <span>{d.name}</span>
+    </nav>
+    <p class="eyebrow">{regionNames.join(' · ')}</p>
+    <h1>{d.name}</h1>
+    <p class="lead">{d.summary}</p>
+    <div class="tags">
+      {d.categories.map((c) => (
+        <a class="badge" href={`/explorar/?categoria=${c}`}>
+          {experiences.find((x) => x.id === c)?.name}
+        </a>
+      ))}
+    </div>
+    {d.photo && <Photo id={d.photo} class="detail-hero" />}
+    <div class="detail-grid">
+      <div>
+        <section>
+          <h2>Un lugar para descubrir</h2>
+          <p>{d.description}</p>
+          <p class="muted">
+            Revisión documental: <time datetime={d.verified}>{d.verified}</time>. La revisión no
+            garantiza apertura ni condiciones actuales.
+          </p>
+        </section>
+        <section class="section-small">
+          <h2>Antes de salir</h2>
+          <p>
+            Las condiciones pueden cambiar. Consulta los avisos de las autoridades y la
+            administración del lugar.
+          </p>
+          <ul>
+            {d.safety.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ul>
+        </section>
+        <section class="section-small">
+          <h2>Ubicación y acceso</h2>
+          {coords ? (
+            <>
+              <p>{coords.note}</p>
+              <p>
+                Latitud: {coords.lat} · Longitud: {coords.lng}
+              </p>
+              <div class="map-actions">
+                <a class="button" href={`/mapa/?destino=${d.id}`}>
+                  Ver en el mapa ↗︎
+                </a>
+                {coords.kind === 'entrada' && (
+                  <a
+                    class="button secondary"
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`}
+                  >
+                    Cómo llegar (Google Maps)
+                  </a>
+                )}
+              </div>
+              {coords.kind === 'referencia' && (
+                <p class="notice">
+                  Este punto sitúa el destino en el mapa. No es una entrada: consulta las
+                  indicaciones de acceso y la fuente oficial para organizar tu llegada.
+                </p>
+              )}
+            </>
+          ) : (
+            <p class="notice">
+              Coordenadas pendientes de verificación. No mostramos un marcador ni una ruta de
+              llegada hasta documentarlas.
+            </p>
+          )}
+          <dl>
+            <Fact label="Indicaciones de acceso" fact={d.access} />
+          </dl>
+        </section>
+      </div>
+      <aside class="facts" aria-label="Información práctica">
+        <h2>Planifica con información</h2>
+        <dl>
+          <dt>Provincia o comarca</dt>
+          <dd>
+            {d.regions.map((id) => (
+              <a class="region-link" href={`/regiones/${id}/`}>
+                {regions.find((r) => r.id === id)!.name}
+              </a>
+            ))}
+          </dd>
+          <Fact label="Distrito" fact={d.district} display={adminName(d.district)} />
+          <Fact label="Corregimiento" fact={d.corregimiento} display={adminName(d.corregimiento)} />
+          <Fact
+            label="Costo"
+            fact={d.cost}
+            display={d.cost.status === 'confirmado' ? d.cost.value.detail : undefined}
+          />
+          <Fact label="Horarios" fact={d.hours} />
+          <Fact
+            label="Servicios"
+            fact={d.services}
+            display={d.services.status === 'confirmado' ? d.services.value.join(', ') : undefined}
+          />
+        </dl>
+        <p class="notice">Sin confirmar no significa gratuito, cerrado ni inexistente.</p>
+        <a href="/metodologia/">Cómo verificamos estos datos ↗︎</a>
+      </aside>
+    </div>
+    <section class="section prose">
+      <p class="eyebrow">CONSULTA EL ORIGEN</p>
+      <h2>Fuentes de esta ficha</h2>
+      <p>
+        Las fuentes respaldan los aspectos indicados. No todos los datos prácticos están
+        confirmados.
+      </p>
+      <ul class="sources">
+        {d.sources.map((id) => {
+          const s = sources.find((x) => x.id === id)!;
+          return (
+            <li id={`fuente-${id}`}>
+              <a href={s.url}>{s.title}</a>
+              <p>
+                {s.publisher} · Consulta: <time datetime={s.consulted}>{s.consulted}</time>
+              </p>
+              <p>{s.supports}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  </article>
+</Layout>

@@ -1,4 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Página no encontrada" description="Vuelve a explorar los destinos de Panamá."><section class="container page-top empty-state"><p class="eyebrow">404 · CAMBIO DE RUMBO</p><h1>Este camino no existe.</h1><p>Podemos ayudarte a encontrar otro lugar.</p><a class="button" href="/explorar/">Explorar destinos</a></section></Layout>
+
+<Layout
+  noindex
+  title="Página no encontrada"
+  description="Vuelve a explorar los destinos de Panamá."
+>
+  <section class="container page-top empty-state">
+    <p class="eyebrow">404 · CAMBIO DE RUMBO</p>
+    <h1>Este camino no existe.</h1>
+    <p>Podemos ayudarte a encontrar otro lugar.</p>
+    <a class="button" href="/explorar/">
+      Explorar destinos
+    </a>
+  </section>
+</Layout>
