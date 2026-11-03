@@ -1,40 +1,167 @@
 ---
+import { withBase, withoutBase } from '../lib/paths';
 import '../styles/global.css';
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
-const path = Astro.url.pathname;
+import { canonicalUrl } from '../lib/seo';
+import { safeJson } from '../lib/json';
+import { getImage } from 'astro:assets';
+import { photos, type PhotoId } from '../lib/photos';
+interface Props {
+  title: string;
+  description: string;
+  structuredData?: Record<string, unknown>;
+  noindex?: boolean;
+  socialImage?: PhotoId | null;
+}
+const { title, description, structuredData, noindex = false, socialImage = 'coiba' } = Astro.props;
+const canonical = noindex ? undefined : canonicalUrl(Astro.site?.href, Astro.url.pathname);
+const indexable = import.meta.env.SITE_INDEXABLE === 'true' && !!Astro.site && !noindex;
+const path = withoutBase(Astro.url.pathname);
+const socialPhoto =
+  Astro.site && socialImage
+    ? await getImage({ src: photos[socialImage].src, width: 1200, height: 630, format: 'webp' })
+    : undefined;
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" />
-    <title>{title} | Blue Panamá Turismo</title><meta name="description" content={description} />
-    <meta name="robots" content="noindex, nofollow" /><meta name="theme-color" content="#092f43" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta charset="UTF-8" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | Blue Panamá Turismo</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={`${title} | Blue Panamá Turismo`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PA" />
+    <meta property="og:site_name" content="Blue Panamá Turismo" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {socialPhoto && Astro.site && socialImage && (
+      <>
+        <meta property="og:image" content={new URL(socialPhoto.src, Astro.site).href} />
+        <meta
+          property="og:image:alt"
+          content={`${photos[socialImage].alt}. ${photos[socialImage].author} · ${photos[socialImage].license}`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+      </>
+    )}
+    {structuredData && (
+      <script type="application/ld+json" is:inline set:html={safeJson(structuredData)} />
+    )}
+    <meta name="theme-color" content="#092f43" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
   </head>
   <body>
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <header class="site-header"><div class="container header-inner">
-      <a href="/" class="brand" aria-label="Blue Panamá Turismo, inicio"><span class="brand-icon" aria-hidden="true">b<span>°</span></span><span><strong>blue<span class="brand-panama">panamá</span></strong><small>TURISMO · BLUE LAB STUDIOS</small></span></a>
-      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" hidden>Menú <span aria-hidden="true">☰</span></button>
-      <nav id="main-nav" aria-label="Principal">
-        <a href="/" aria-current={path === '/' ? 'page' : undefined}>Inicio</a><a href="/explorar/" aria-current={path === '/explorar/' ? 'page' : undefined}>Descubrir</a><a href="/#regiones">Regiones</a><a href="/#experiencias">Experiencias</a><a class="nav-map" href="/mapa/">Explorar el mapa <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div></header>
-    <main id="contenido"><slot /></main>
-    <footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="/">blue panamá<span aria-hidden="true">.</span></a><p>Un país pequeño.<br />Un mundo por descubrir.</p><span class="eyebrow">UN PROYECTO DE BLUE LAB STUDIOS</span></div><div><h2>Empieza a explorar</h2><a href="/explorar/">Destinos</a><a href="/#regiones">Provincias y comarcas</a><a href="/mapa/">Mapa de Panamá</a></div><div><h2>Viaja con información</h2><a href="/metodologia/">Cómo verificamos</a><a href="/privacidad/">Privacidad</a><p>Catálogo editorial en construcción.<br />Sin reseñas ni datos inventados.</p></div></div><div class="container footer-bottom"><span>© {new Date().getUTCFullYear()} Blue Lab Studios</span><span>Hecho para descubrir Panamá 🇵🇦</span></div></footer>
-    <script>
-      const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
-      const nav = document.querySelector<HTMLElement>('#main-nav');
-      if (button && nav) {
-        button.hidden = false;
-        nav.classList.add('enhanced');
-        const close = () => { button.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); };
-        button.addEventListener('click', () => { const open = button.getAttribute('aria-expanded') !== 'true'; button.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open); });
-        nav.addEventListener('click', (event) => { if ((event.target as HTMLElement).closest('a')) close(); });
-        document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') { close(); button.focus(); } });
-        matchMedia('(min-width: 900px)').addEventListener('change', close);
+    <a class="skip-link" href="#contenido">
+      Saltar al contenido
+    </a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href={withBase('/')} class="brand">
+          <span class="brand-icon" aria-hidden="true">
+            b<span>°</span>
+          </span>
+          <span>
+            <strong>
+              blue <span class="brand-panama">panamá</span>
+            </strong>
+            <small>TURISMO · BLUE LAB STUDIOS</small>
+            <span class="sr-only"> · Inicio</span>
+          </span>
+        </a>
+        <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" hidden>
+          Menú <span aria-hidden="true">☰︎</span>
+        </button>
+        <nav id="main-nav" aria-label="Principal">
+          <a href={withBase('/')} aria-current={path === '/' ? 'page' : undefined}>
+            Inicio
+          </a>
+          <a
+            href={withBase('/explorar/')}
+            aria-current={path === '/explorar/' ? 'page' : undefined}
+          >
+            Descubrir
+          </a>
+          <a href={withBase('/#regiones')}>Regiones</a>
+          <a href={withBase('/#experiencias')}>Experiencias</a>
+          <a class="nav-map" href={withBase('/mapa/')}>
+            Explorar el mapa <span aria-hidden="true">↗︎</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <script is:inline>
+      {
+        const button = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('#main-nav');
+        if (button && nav) {
+          button.hidden = false;
+          const close = () => {
+            button.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('open');
+          };
+          button.addEventListener('click', () => {
+            const open = button.getAttribute('aria-expanded') !== 'true';
+            button.setAttribute('aria-expanded', String(open));
+            nav.classList.toggle('open', open);
+          });
+          nav.addEventListener('click', (event) => {
+            if (event.target instanceof Element && event.target.closest('a')) close();
+          });
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+              close();
+              button.focus();
+            }
+          });
+          matchMedia('(min-width: 900px)').addEventListener('change', close);
+        }
       }
     </script>
+
+    <main id="contenido">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="footer-brand" href={withBase('/')}>
+            blue panamá<span aria-hidden="true">.</span>
+          </a>
+          <p>
+            Un país pequeño.
+            <br />
+            Un mundo por descubrir.
+          </p>
+          <span class="eyebrow">UN PROYECTO DE BLUE LAB STUDIOS</span>
+        </div>
+        <div>
+          <h2>Empieza a explorar</h2>
+          <a href={withBase('/explorar/')}>Destinos</a>
+          <a href={withBase('/#regiones')}>Provincias y comarcas</a>
+          <a href={withBase('/mapa/')}>Mapa de Panamá</a>
+        </div>
+        <div>
+          <h2>Viaja con información</h2>
+          <a href={withBase('/metodologia/')}>Cómo verificamos</a>
+          <a href={withBase('/privacidad/')}>Privacidad</a>
+          <p>
+            Catálogo editorial en construcción.
+            <br />
+            Sin reseñas ni datos inventados.
+          </p>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© {new Date().getUTCFullYear()} Blue Lab Studios</span>
+        <span>Hecho para descubrir Panamá 🇵🇦</span>
+      </div>
+    </footer>
   </body>
 </html>

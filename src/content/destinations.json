@@ -1,0 +1,175 @@
+[
+  {
+    "id": "coiba",
+    "slug": "coiba",
+    "name": "Parque Nacional Coiba y su zona especial de protección marina",
+    "status": "publicado",
+    "regions": ["veraguas", "chiriqui"],
+    "district": {
+      "status": "desconocido"
+    },
+    "corregimiento": {
+      "status": "desconocido"
+    },
+    "categories": ["naturaleza", "playas"],
+    "activities": ["observacion"],
+    "summary": "Bosque e islas en un paisaje protegido del Pacífico panameño.",
+    "description": "Coiba reúne ambientes terrestres y marinos del Pacífico. La isla y las aguas que la rodean forman parte de un bien reconocido por la UNESCO por su importancia para la biodiversidad. Esta ficha abarca el parque y su zona especial de protección marina; no representa una playa ni un punto de desembarque concreto.",
+    "photo": "coiba",
+    "coordinates": {
+      "status": "confirmado",
+      "value": {
+        "lat": 7.433,
+        "lng": -81.766,
+        "kind": "referencia",
+        "note": "Punto de referencia del bien UNESCO, convertido de N7 25 58.8 W81 45 57.6. No es una entrada ni un desembarcadero."
+      },
+      "sources": ["unesco-coiba"]
+    },
+    "access": {
+      "status": "confirmado",
+      "value": "El acceso es marítimo. Visit Panamá identifica Santa Catalina entre los puntos de salida; confirma permisos, navegación y condiciones con la administración antes de organizar el traslado.",
+      "sources": ["atp-coiba"]
+    },
+    "cost": {
+      "status": "desconocido"
+    },
+    "hours": {
+      "status": "desconocido"
+    },
+    "services": {
+      "status": "desconocido"
+    },
+    "safety": [
+      "Recomendación general: consulta las condiciones meteorológicas y avisos oficiales antes de salir.",
+      "Recomendación general: respeta la señalización, las indicaciones locales y el entorno; no dejes residuos."
+    ],
+    "sources": ["unesco-coiba", "atp-coiba"],
+    "verified": "2026-11-03",
+    "featured": true
+  },
+  {
+    "id": "boquete",
+    "slug": "boquete",
+    "name": "Boquete",
+    "status": "publicado",
+    "regions": ["chiriqui"],
+    "district": {
+      "status": "desconocido"
+    },
+    "corregimiento": {
+      "status": "desconocido"
+    },
+    "categories": ["montanas", "naturaleza", "pueblos"],
+    "activities": ["observacion"],
+    "summary": "Un valle entre montañas, naturaleza y tradición cafetera.",
+    "description": "Boquete invita a conocer el paisaje montañoso de Chiriquí. El entorno de la localidad combina vegetación y fincas de café. Esta ficha ofrece una introducción al destino; cada finca, sendero o experiencia requiere confirmar sus condiciones por separado.",
+    "photo": "boquete",
+    "coordinates": {
+      "status": "desconocido"
+    },
+    "access": {
+      "status": "desconocido"
+    },
+    "cost": {
+      "status": "desconocido"
+    },
+    "hours": {
+      "status": "desconocido"
+    },
+    "services": {
+      "status": "desconocido"
+    },
+    "safety": [
+      "Recomendación general: consulta las condiciones meteorológicas y avisos oficiales antes de salir.",
+      "Recomendación general: respeta la señalización, las indicaciones locales y el entorno; no dejes residuos."
+    ],
+    "sources": ["atp-boquete"],
+    "verified": "2026-11-03",
+    "featured": true
+  },
+  {
+    "id": "portobelo",
+    "slug": "portobelo",
+    "name": "Portobelo",
+    "status": "publicado",
+    "regions": ["colon"],
+    "district": {
+      "status": "desconocido"
+    },
+    "corregimiento": {
+      "status": "desconocido"
+    },
+    "categories": ["cultura", "pueblos"],
+    "activities": ["paseo"],
+    "summary": "Una bahía caribeña donde conviven patrimonio y cultura Congo.",
+    "description": "Portobelo se encuentra en la costa caribeña de Colón. Sus fortificaciones permiten acercarse a la historia del tránsito por el istmo, mientras la cultura Congo forma parte de la identidad viva del pueblo. La visita a cada monumento o espacio cultural tiene condiciones propias.",
+    "photo": "portobelo",
+    "coordinates": {
+      "status": "desconocido"
+    },
+    "access": {
+      "status": "desconocido"
+    },
+    "cost": {
+      "status": "desconocido"
+    },
+    "hours": {
+      "status": "desconocido"
+    },
+    "services": {
+      "status": "desconocido"
+    },
+    "safety": [
+      "Recomendación general: consulta las condiciones meteorológicas y avisos oficiales antes de salir.",
+      "Recomendación general: respeta la señalización, las indicaciones locales y el entorno; no dejes residuos."
+    ],
+    "sources": ["atp-portobelo", "unesco-portobelo"],
+    "verified": "2026-11-03",
+    "featured": true
+  },
+  {
+    "id": "el-valle-de-anton",
+    "slug": "el-valle-de-anton",
+    "name": "El Valle de Antón",
+    "status": "publicado",
+    "regions": ["cocle"],
+    "district": {
+      "status": "confirmado",
+      "value": "anton",
+      "sources": ["atp-valle-territorio"]
+    },
+    "corregimiento": {
+      "status": "confirmado",
+      "value": "el-valle",
+      "sources": ["atp-valle-territorio"]
+    },
+    "categories": ["montanas", "naturaleza", "pueblos"],
+    "activities": ["senderismo", "observacion"],
+    "summary": "Un pueblo dentro de un cráter, rodeado de paisajes verdes.",
+    "description": "El Valle de Antón se desarrolla dentro del cráter de un volcán inactivo en Coclé. Su entorno permite descubrir paisajes y propuestas de naturaleza. La localidad sirve como punto de partida para explorar; esta ficha no confirma el acceso actual a senderos ni cascadas concretas.",
+    "photo": "valle",
+    "coordinates": {
+      "status": "desconocido"
+    },
+    "access": {
+      "status": "desconocido"
+    },
+    "cost": {
+      "status": "desconocido"
+    },
+    "hours": {
+      "status": "desconocido"
+    },
+    "services": {
+      "status": "desconocido"
+    },
+    "safety": [
+      "Recomendación general: consulta las condiciones meteorológicas y avisos oficiales antes de salir.",
+      "Recomendación general: respeta la señalización, las indicaciones locales y el entorno; no dejes residuos."
+    ],
+    "sources": ["atp-valle", "atp-valle-territorio"],
+    "verified": "2026-11-03",
+    "featured": true
+  }
+]

@@ -1,0 +1,58 @@
+name: GitHub Pages
+# Publicación MANUAL: solo se ejecuta al pulsar "Run workflow" en Actions.
+# Requisitos previos (los hace el propietario, no este flujo):
+#   1. Fusionar la integración en main con aprobación.
+#   2. Settings → Pages → Source: "GitHub Actions" (en repos privados requiere un plan de pago).
+# Por defecto el sitio sale con noindex; la indexación se activa solo con la casilla.
+on:
+  workflow_dispatch:
+    inputs:
+      indexable:
+        description: 'Permitir indexación en buscadores (solo tras revisión editorial)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - run: npm ci
+      - run: npm run validate
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          SITE_INDEXABLE: ${{ inputs.indexable && 'true' || 'false' }}
+      - run: npm run check:links
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
