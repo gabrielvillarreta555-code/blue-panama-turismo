@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import DestinationCard from '../../components/DestinationCard.astro';
+import { belongsToRegion, getCatalog } from '../../lib/catalog';
+export async function getStaticPaths() {
+  const { regions } = await getCatalog();
+  return regions.map((region) => ({ params: { slug: region.id }, props: { region } }));
+}
+const { region } = Astro.props;
+const { territories, regions, destinations, sources } = await getCatalog();
+const places = destinations.filter((d) => belongsToRegion(d, region.id, territories));
+const parent = territories.find((t) => t.id === region.parentId);
+---
+
+<Layout
+  title={region.name}
+  socialImage={region.photo ?? null}
+  description={`Explora ${region.name}: destinos documentados, organización territorial y fuentes de Blue Panamá Turismo.`}
+>
+  <article class="container page-top">
+    <nav class="crumbs" aria-label="Ruta de navegación">
+      <a href="/">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <a href="/#regiones">Regiones</a>
+      <span aria-hidden="true">/</span>
+      <span>{region.name}</span>
+    </nav>
+    <p class="eyebrow">{region.kind === 'provincia' ? 'PROVINCIA' : 'COMARCA INDÍGENA'}</p>
+    <h1>{region.name}</h1>
+    <p class="lead">{region.description}</p>
+    {region.photo ? (
+      <Photo id={region.photo} class="detail-hero" />
+    ) : (
+      <div class="region-placeholder">
+        <strong>Un territorio por documentar</strong>
+        <p>
+          Incorporaremos fotografías cuando dispongamos de imágenes identificadas y con derechos de
+          uso.
+        </p>
+      </div>
+    )}
+    {region.kind === 'comarca' && (
+      <div class="notice">
+        <strong>Organización propia</strong>
+        <p>
+          Nivel de representación administrativa en la fuente consultada:{' '}
+          {region.administrativeLevel}.
+          {parent && ` Territorio superior documentado: ${parent.name}.`}
+        </p>
+        {region.note && <p>{region.note}</p>}
+        <p>La inclusión de una comarca no implica autorización para visitar sus comunidades.</p>
+      </div>
+    )}
+    <div class="section-heading">
+      <div>
+        <h2>Descubre {region.name}</h2>
+        <p>Destinos con fuentes consultadas para comenzar a explorar.</p>
+      </div>
+      <a href={`/explorar/?region=${region.id}`} class="text-link">
+        Buscar en esta región ↗︎
+      </a>
+    </div>
+    {places.length ? (
+      <div class="card-grid">
+        {places.map((d) => (
+          <DestinationCard destination={d} regions={regions} />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <h3>Todavía no hay fichas publicadas</h3>
+        <p>
+          Estamos preparando el catálogo de esta región. No significa que no haya lugares por
+          descubrir.
+        </p>
+        <a href="/explorar/">Explorar otras regiones</a>
+      </div>
+    )}
+    <section class="prose section">
+      <h2>Fuentes territoriales</h2>
+      <p>
+        Revisión documental: <time datetime={region.verified}>{region.verified}</time>.
+      </p>
+      <ul class="sources">
+        {region.sources.map((id) => {
+          const s = sources.find((x) => x.id === id)!;
+          return (
+            <li>
+              <a href={s.url}>{s.title}</a>
+              <p>
+                {s.publisher}. {s.supports}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  </article>
+</Layout>

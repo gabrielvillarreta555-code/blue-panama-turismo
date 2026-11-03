@@ -1,0 +1,33 @@
+---
+interface Props {
+  label: string;
+  fact:
+    | { status: 'confirmado'; value: unknown; sources: string[] }
+    | { status: 'desconocido' }
+    | { status: 'no_aplica'; reason: string };
+  display?: string;
+}
+const { label, fact, display } = Astro.props;
+---
+
+<div class="fact">
+  <dt>{label}</dt>
+  <dd>
+    {fact.status === 'confirmado' ? (
+      <>
+        {display ?? String(fact.value)}{' '}
+        <small class="fact-evidence">
+          {fact.sources.map((s, i) => (
+            <a href={`#fuente-${s}`} aria-label={`Fuente ${i + 1} de ${label}`}>
+              [{i + 1}]
+            </a>
+          ))}
+        </small>
+      </>
+    ) : fact.status === 'no_aplica' ? (
+      <>No aplica: {fact.reason}</>
+    ) : (
+      'Sin confirmar'
+    )}
+  </dd>
+</div>

@@ -1,0 +1,33 @@
+---
+import Photo from './Photo.astro';
+import { experiences } from '../lib/experiences';
+import type { Destination, Territory } from '../lib/schemas';
+interface Props {
+  destination: Destination;
+  regions: Territory[];
+}
+const { destination: d, regions } = Astro.props;
+const regionName = d.regions.map((id) => regions.find((r) => r.id === id)?.name).join(' · ');
+const category = experiences.find((c) => c.id === d.categories[0])?.name;
+---
+
+<article class="destination-card" data-destination={d.id}>
+  {d.photo ? (
+    <Photo id={d.photo} />
+  ) : (
+    <div class="region-placeholder">Fotografía pendiente de documentación</div>
+  )}
+  <div class="card-body">
+    <span class="eyebrow">{regionName}</span>
+    <h3>
+      <a href={`/destinos/${d.slug}/`}>{d.name}</a>
+    </h3>
+    <p>{d.summary}</p>
+    <div class="card-bottom">
+      <span class="badge">{category}</span>
+      <span>
+        Fuentes consultadas <span aria-hidden="true">↗︎</span>
+      </span>
+    </div>
+  </div>
+</article>
