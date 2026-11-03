@@ -56,3 +56,14 @@ El primer verificador SEO falló por un movimiento de archivos entre discos dist
 Las pruebas de teléfono son emulación; no se probaron dispositivos Android/iPhone físicos. Solo un destino cuenta con coordenadas verificadas. Precios, horarios y servicios iniciales siguen sin confirmar. Las regiones sin imagen documentada muestran estados explícitos; no se sustituyen por fotos de otros territorios.
 
 Las capturas de [escritorio](capturas/inicio-escritorio.png), [móvil](capturas/inicio-movil.png) y [mapa móvil](capturas/mapa-movil.png) corresponden a la compilación local. No hay despliegue ni dominio público configurado. El workflow de CI se entrega para revisión; su ejecución remota se documentará al comprobar GitHub.
+
+## Integración en main — 2026-11-03
+
+Verificación independiente sobre la rama de integración (contenido idéntico a `feat/entrega-4-mapa-calidad` más las correcciones de este apartado), con Node.js 24.22.2:
+
+- `npm ci`; `format:check`, `check` (42 archivos, 0 errores/advertencias/hints), `lint`, `test` (18 pruebas, 2 nuevas para rutas base), `build` (26 páginas), `check:links` (621 referencias, 0 roturas), `test:seo` (26 documentos, 25 URLs de sitemap, JSON-LD válido): correctos.
+- Playwright 1.64.1 (Chromium escritorio, Pixel 7 emulado, iPhone 13 emulado con WebKit; bibliotecas instaladas con `playwright install-deps`): 62 correctas, 1 omitida intencionalmente (menú móvil en escritorio).
+- `npm audit`: 0 vulnerabilidades tras el override de minimatch (antes: 12 moderadas). Gitleaks 8.30.1 (SHA-256 verificado): sin hallazgos en historial ni archivos.
+- Compilación con `BASE_PATH=/blue-panama-turismo/` y `SITE_URL=https://gabrielvillarreta555-code.github.io`: `validate` correcto, 621 referencias dentro de la base sin roturas; canónicas, `og:image` y JSON-LD incluyen la ruta; `noindex` y `robots.txt` bloqueante por defecto. Prueba de humo en navegador servida bajo la subruta: inicio, búsqueda, mapa Leaflet (marcador de Coiba y enlace del popup), ficha → región y 404.
+- La compilación sin `BASE_PATH` produce HTML idéntico al de la entrega 4 (solo cambia el hash del script del mapa).
+- No se ejecutó el workflow de GitHub Pages ni se publicó el sitio. Lighthouse no se repitió.

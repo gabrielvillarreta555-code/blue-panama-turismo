@@ -14,4 +14,6 @@ Antes de publicar: autorización expresa, dominio real, proveedor de alojamiento
 
 Entregas 1–4 implementadas para revisión en PR apilados. La entrega 5 sigue siendo editorial: completar fotos de territorios, confirmar nuevos puntos de acceso y datos prácticos, ampliar destinos y establecer revisiones periódicas. No se generaron fichas masivas.
 
+El plan detallado de la entrega 5 está en [plan-catalogo-100.md](plan-catalogo-100.md).
+
 Los resultados de laboratorio, avisos de dependencias y comprobaciones pendientes están en `validacion.md` y `seguridad.md`. La publicación sigue requiriendo autorización independiente.
