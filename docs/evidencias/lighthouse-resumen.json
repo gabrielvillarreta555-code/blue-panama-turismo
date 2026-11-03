@@ -1,0 +1,33 @@
+{
+  "version": "13.6.0",
+  "time": "2026-11-03T13:38:13.578Z",
+  "url": "http://127.0.0.1:4321/",
+  "formFactor": "mobile",
+  "throttling": {
+    "rttMs": 150,
+    "throughputKbps": 1638.4,
+    "requestLatencyMs": 562.5,
+    "downloadThroughputKbps": 1474.5600000000002,
+    "uploadThroughputKbps": 675,
+    "cpuSlowdownMultiplier": 4
+  },
+  "categories": {
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 66
+  },
+  "metrics": {
+    "first-contentful-paint": "0.8 s",
+    "largest-contentful-paint": "2.3 s",
+    "total-blocking-time": "0 ms",
+    "cumulative-layout-shift": "0",
+    "speed-index": "0.8 s",
+    "total-byte-weight": "Total size was 386 KiB"
+  },
+  "notes": [
+    "Una medición local de laboratorio; no garantiza resultados en dispositivos o redes reales.",
+    "SEO reducido intencionalmente por noindex/robots de revisión.",
+    "La prueba del modo público se realiza por separado sin desplegar."
+  ]
+}
