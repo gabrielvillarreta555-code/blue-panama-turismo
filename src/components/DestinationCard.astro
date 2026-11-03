@@ -9,5 +9,5 @@ const category = experiences.find(c => c.id === d.categories[0])?.name;
 ---
 <article class="destination-card" data-destination={d.id}>
  {d.photo ? <Photo id={d.photo} /> : <div class="region-placeholder">Fotografía pendiente de documentación</div>}
- <div class="card-body"><span class="eyebrow">{regionName}</span><h3><a href={`/explorar/?q=${encodeURIComponent(d.name)}`}>{d.name}</a></h3><p>{d.summary}</p><div class="card-bottom"><span class="badge">{category}</span><span>Fuentes consultadas <span aria-hidden="true">↗</span></span></div></div>
+ <div class="card-body"><span class="eyebrow">{regionName}</span><h3><a href={`/destinos/${d.slug}/`}>{d.name}</a></h3><p>{d.summary}</p><div class="card-bottom"><span class="badge">{category}</span><span>Fuentes consultadas <span aria-hidden="true">↗</span></span></div></div>
 </article>

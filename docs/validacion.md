@@ -18,3 +18,12 @@
 - Playwright Chromium escritorio/móvil: 7 pruebas correctas y 1 omisión intencional.
 - 10 provincias y 6 comarcas con páginas propias; 4 destinos documentados. Las fichas individuales se conectan en la entrega 3.
 - Sin fotos para todos los territorios: se muestran estados explícitos, no imágenes de otras regiones.
+
+## Entrega 3 — 2026-11-03
+
+- TypeScript, ESLint y compilación de 26 páginas: correctos.
+- Vitest: 12 pruebas correctas, incluidos borradores, filtros por costo, tildes, referencias y serialización segura.
+- Playwright Chromium escritorio/móvil: 15 pruebas correctas, 1 omisión intencional.
+- Búsqueda y filtros compartibles; historial, limpieza, ausencia de resultados, navegación regional y fichas comprobados.
+- Catálogo y fichas navegables con JavaScript desactivado.
+- Cuatro fichas con fuentes y límites explícitos. No se inventan horarios, servicios, rutas ni precios para completar campos.
