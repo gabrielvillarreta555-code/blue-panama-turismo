@@ -1,0 +1,5 @@
+---
+interface Props { image?: string; alt?: string; }
+const { image, alt = 'Blue, guía de Blue Panamá Turismo' } = Astro.props;
+---
+{image && <aside class="blue-guide"><img src={image} alt={alt} width="120" height="120" loading="lazy" /><slot /></aside>}
