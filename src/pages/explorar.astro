@@ -5,19 +5,102 @@ import { getCatalog } from '../lib/catalog';
 import { experiences, activities } from '../lib/experiences';
 import { createSearchIndex } from '../lib/search';
 import { safeJson } from '../lib/json';
-const { destinations, regions, territories }=await getCatalog();
-const index=createSearchIndex(destinations,territories);
+const { destinations, regions, territories } = await getCatalog();
+const index = createSearchIndex(destinations, territories);
 ---
-<Layout title="Descubre Panamá" description="Encuentra destinos documentados de Panamá por nombre, provincia, comarca, experiencia y actividad.">
-<section class="container page-top"><p class="eyebrow">TU PRÓXIMO DESCUBRIMIENTO</p><h1>Hay un Panamá para ti.</h1><p class="lead">Busca un lugar, sigue una curiosidad y empieza a explorar.</p>
-<form id="catalog-search" role="search" action="/explorar/">
-<fieldset disabled class="search-fieldset"><legend class="sr-only">Buscar y filtrar destinos</legend>
-<div class="search-form"><label for="q" class="sr-only">Nombre o región</label><input id="q" name="q" type="search" placeholder="Busca un lugar o una región" maxlength="160" /><button class="button" type="submit">Buscar <span aria-hidden="true">↗</span></button></div>
-<div class="filters"><label>Provincia o comarca<select name="region"><option value="">Todas las regiones</option>{regions.map(r=><option value={r.id}>{r.name}</option>)}</select></label><label>Categoría<select name="categoria"><option value="">Todas las experiencias</option>{experiences.map(c=><option value={c.id}>{c.name}</option>)}</select></label><label>Actividad<select name="actividad"><option value="">Todas las actividades</option>{activities.map(a=><option value={a.id}>{a.name}</option>)}</select></label><label>Acceso confirmado<select name="acceso"><option value="">Todos, incluido sin confirmar</option><option value="gratuito">Gratuito confirmado</option><option value="pago">De pago confirmado</option></select></label></div>
-</fieldset></form>
-<p id="search-enhancement-note" class="notice">Activa JavaScript para buscar y filtrar. Puedes consultar todos los destinos a continuación.</p>
-<div class="results-heading"><p id="result-count" role="status" aria-live="polite" aria-atomic="true">{destinations.length} destinos documentados</p><a id="clear-filters" href="/explorar/">Limpiar filtros</a></div>
-<div class="empty-state" id="no-results" hidden><h2>Queda mucho por descubrir</h2><p>No hay destinos publicados que coincidan con esta búsqueda. Prueba otra región o elimina algún filtro.</p><p>Los destinos sin costo confirmado no aparecen al filtrar por gratuito o de pago.</p></div>
-<div class="card-grid">{destinations.map(d=><DestinationCard destination={d} regions={regions} />)}</div>
-</section><script id="search-data" type="application/json" is:inline set:html={safeJson(index)} /><script>import '../scripts/search';</script>
+
+<Layout
+  title="Descubre Panamá"
+  description="Encuentra destinos documentados de Panamá por nombre, provincia, comarca, experiencia y actividad."
+>
+  <section class="container page-top">
+    <p class="eyebrow">TU PRÓXIMO DESCUBRIMIENTO</p>
+    <h1>Hay un Panamá para ti.</h1>
+    <p class="lead">Busca un lugar, sigue una curiosidad y empieza a explorar.</p>
+    <form id="catalog-search" role="search" action="/explorar/">
+      <fieldset disabled class="search-fieldset">
+        <legend class="sr-only">Buscar y filtrar destinos</legend>
+        <div class="search-form">
+          <label for="q" class="sr-only">
+            Nombre o región
+          </label>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            placeholder="Busca un lugar o una región"
+            maxlength="160"
+          />
+          <button class="button" type="submit">
+            Buscar <span aria-hidden="true">↗︎</span>
+          </button>
+        </div>
+        <div class="filters">
+          <label>
+            Provincia o comarca
+            <select name="region">
+              <option value="">Todas las regiones</option>
+              {regions.map((r) => (
+                <option value={r.id}>{r.name}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Categoría
+            <select name="categoria">
+              <option value="">Todas las experiencias</option>
+              {experiences.map((c) => (
+                <option value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Actividad
+            <select name="actividad">
+              <option value="">Todas las actividades</option>
+              {activities.map((a) => (
+                <option value={a.id}>{a.name}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Acceso confirmado
+            <select name="acceso">
+              <option value="">Todos, incluido sin confirmar</option>
+              <option value="gratuito">Gratuito confirmado</option>
+              <option value="pago">De pago confirmado</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+    </form>
+    <p id="search-enhancement-note" class="notice">
+      Activa JavaScript para buscar y filtrar. Puedes consultar todos los destinos a continuación.
+    </p>
+    <div class="results-heading">
+      <p id="result-count" role="status" aria-live="polite" aria-atomic="true">
+        {destinations.length} destinos documentados
+      </p>
+      <a id="clear-filters" href="/explorar/">
+        Limpiar filtros
+      </a>
+    </div>
+    <div class="empty-state" id="no-results" hidden>
+      <h2>Queda mucho por descubrir</h2>
+      <p>
+        No hay destinos publicados que coincidan con esta búsqueda. Prueba otra región o elimina
+        algún filtro.
+      </p>
+      <p>Los destinos sin costo confirmado no aparecen al filtrar por gratuito o de pago.</p>
+    </div>
+    <div class="card-grid">
+      {destinations.map((d) => (
+        <DestinationCard destination={d} regions={regions} />
+      ))}
+    </div>
+  </section>
+  <script id="search-data" type="application/json" is:inline set:html={safeJson(index)} />
+  <script>
+    import '../scripts/search';
+  </script>
 </Layout>
