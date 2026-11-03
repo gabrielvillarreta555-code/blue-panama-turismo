@@ -1,0 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import { photos, type PhotoId } from '../lib/photos';
+interface Props { id: PhotoId; hero?: boolean; class?: string; }
+const { id, hero = false, class: className = '' } = Astro.props;
+const photo = photos[id];
+---
+<figure class:list={['photo', className]}>
+  <Image src={photo.src} alt={photo.alt} widths={hero ? [640, 960, 1440, 1920] : [320, 640, 960]} sizes={hero ? '100vw' : '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw'} format="webp" loading={hero ? 'eager' : 'lazy'} fetchpriority={hero ? 'high' : 'auto'} />
+  <figcaption><a href={photo.source}>{photo.author}</a> · <a href={photo.licenseUrl}>{photo.license}</a><span class="sr-only">. Recorte visual y optimización de tamaño. Fotografía: {photo.date}.</span></figcaption>
+</figure>

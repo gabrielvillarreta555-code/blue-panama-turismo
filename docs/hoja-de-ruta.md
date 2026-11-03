@@ -1,0 +1,11 @@
+# Hoja de ruta
+
+1. Base Astro, identidad, inicio, navegación, documentación y pruebas básicas.
+2. Colecciones validadas, provincias y comarcas, páginas regionales y pequeño catálogo documentado.
+3. Fichas, búsqueda por nombre/región y filtros compartibles.
+4. Mapa con coordenadas verificadas, SEO configurable, accesibilidad y pruebas completas.
+5. Ampliación editorial progresiva, incorporación de fuentes y revisión de información temporal.
+
+Después: traducciones, planificador, rutas por carretera, favoritos, presupuestos, distancia con consentimiento, propuestas moderadas y panel editorial. Evaluar Blue Security y la mascota Blue solo cuando haya interfaces y recursos oficiales.
+
+Antes de publicar: autorización expresa, dominio real, proveedor de alojamiento, política de privacidad actualizada, canal de contacto, revisión editorial y condiciones del proveedor cartográfico. No hay automatización de despliegue.
