@@ -10,3 +10,11 @@
 - WebKit descargado; faltan bibliotecas del sistema. La instalación automática solicitó acceso root no disponible y no se completó. No se afirma validación en Safari/iPhone físico.
 - Inicio de catálogo vacío intencional. Regiones completas, fichas, filtros y mapa corresponden a las siguientes entregas.
 - Astro detecta agentes y puede iniciar preview en segundo plano; Playwright usa `--ignore-lock` para mantener el proceso en primer plano.
+
+## Entrega 2 — 2026-11-03
+
+- Colecciones y relaciones: 7 pruebas unitarias correctas.
+- TypeScript, ESLint y compilación de 22 páginas: correctos.
+- Playwright Chromium escritorio/móvil: 7 pruebas correctas y 1 omisión intencional.
+- 10 provincias y 6 comarcas con páginas propias; 4 destinos documentados. Las fichas individuales se conectan en la entrega 3.
+- Sin fotos para todos los territorios: se muestran estados explícitos, no imágenes de otras regiones.
