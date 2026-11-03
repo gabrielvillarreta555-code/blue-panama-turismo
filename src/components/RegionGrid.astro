@@ -1,0 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import { photos } from '../lib/photos';
+import type { Territory } from '../lib/schemas';
+interface Props { regions: Territory[]; }
+const { regions } = Astro.props;
+const illustrated = regions.filter(r => r.photo);
+---
+<div class="region-grid">{regions.map(r => <a class:list={['region-tile', { plain: !r.photo }]} href={`/regiones/${r.id}/`}>{r.photo && <Image src={photos[r.photo].src} alt="" width={480} height={320} format="webp" loading="lazy" />}<strong>{r.name}</strong><span aria-hidden="true">↗</span></a>)}</div>
+{illustrated.length > 0 && <p class="region-credits">Fotografías de lugares de cada provincia (recortadas): {illustrated.map(r => r.photo && <span><a href={photos[r.photo].source}>{r.name}: {photos[r.photo].author}</a> <a href={photos[r.photo].licenseUrl}>{photos[r.photo].license}</a> </span>)}</p>}

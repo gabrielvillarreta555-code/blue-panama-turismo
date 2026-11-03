@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ign-dpa",
+    "title": "División político-administrativa: metadatos cartográficos 2025",
+    "publisher": "IGN Tommy Guardia / ANATI",
+    "url": "https://services6.arcgis.com/g8UFRtSVbIQ13QqQ/ArcGIS/rest/services/DISTRITOS_CHCP_REG/FeatureServer",
+    "consulted": "2026-11-03",
+    "supports": "Organización territorial y niveles cartográficos; Naso Tjër Di se representa a nivel de distrito. No se replica el distrito ficticio usado para Guna Yala."
+  },
+  {
+    "id": "te-comarcas",
+    "title": "Módulo 4: organización territorial y comarcas",
+    "publisher": "Tribunal Electoral",
+    "url": "https://ciudadaniajoven.te.gob.pa/wp-content/uploads/MODULO-4_compressed.pdf",
+    "consulted": "2026-11-03",
+    "supports": "Diez provincias (p. 20), comarcas (pp. 33–44) y adscripción de Madugandí a Chepo y Wargandí a Pinogana. No se importan circuitos electorales como divisiones administrativas."
+  },
+  {
+    "id": "naso-ley",
+    "title": "Ley 188: creación de la comarca Naso Tjër Di",
+    "publisher": "Procuraduría de la Administración",
+    "url": "https://infojuridica.procuraduria-admon.gob.pa/norma_screen?numsec=55500",
+    "consulted": "2026-11-03",
+    "supports": "División política especial segregada de Changuinola. No se presenta como un distrito ordinario de Bocas del Toro."
+  },
+  {
+    "id": "atp-boquete",
+    "title": "Boquete",
+    "publisher": "Visit Panamá / PROMTUR Panamá",
+    "url": "https://es.tourismpanama.com/lugares-para-visitar/boquete/",
+    "consulted": "2026-11-03",
+    "supports": "Nombre, ubicación en Chiriquí, entorno montañoso y relación con naturaleza y café."
+  },
+  {
+    "id": "atp-valle",
+    "title": "El Valle de Antón",
+    "publisher": "Visit Panamá / PROMTUR Panamá",
+    "url": "https://es.tourismpanama.com/lugares-para-visitar/valle-anton/",
+    "consulted": "2026-11-03",
+    "supports": "Localidad situada en un cráter en Coclé; actividades de naturaleza."
+  },
+  {
+    "id": "atp-valle-territorio",
+    "title": "Habilitación de senderos en El Valle",
+    "publisher": "Autoridad de Turismo de Panamá",
+    "url": "https://www.atp.gob.pa/atp-y-adesva-ejecutan-habilitacion-de-senderos-en-el-valle-destino-de-alto-potencial-para-el-turismo-de-aventuras/",
+    "consulted": "2026-11-03",
+    "supports": "Distrito de Antón y corregimiento El Valle de Antón. La noticia histórica no acredita apertura actual de senderos."
+  },
+  {
+    "id": "atp-portobelo",
+    "title": "Portobelo",
+    "publisher": "Visit Panamá / PROMTUR Panamá",
+    "url": "https://es.tourismpanama.com/lugares-para-visitar/portobelo/",
+    "consulted": "2026-11-03",
+    "supports": "Ubicación en Colón; bahía, fortificaciones y cultura Congo."
+  },
+  {
+    "id": "unesco-portobelo",
+    "title": "Fortificaciones de Portobelo y San Lorenzo",
+    "publisher": "UNESCO, Centro del Patrimonio Mundial",
+    "url": "https://whc.unesco.org/en/list/135/",
+    "consulted": "2026-11-03",
+    "supports": "Fortificaciones en Colón, historia y valor patrimonial; no confirma horarios ni tarifas."
+  },
+  {
+    "id": "unesco-coiba",
+    "title": "Parque Nacional Coiba y su zona especial de protección marina",
+    "publisher": "UNESCO, Centro del Patrimonio Mundial",
+    "url": "https://whc.unesco.org/en/list/1138/",
+    "consulted": "2026-11-03",
+    "supports": "Nombre, ecosistemas y provincias de Veraguas y Chiriquí para el bien completo; punto de referencia N7 25 58.8 W81 45 57.6, no entrada turística."
+  },
+  {
+    "id": "atp-coiba",
+    "title": "Parque Nacional Coiba",
+    "publisher": "Visit Panamá / PROMTUR Panamá",
+    "url": "https://es.tourismpanama.com/aire-libre-y-naturaleza/parques-naturales/parques-nacionales/parque-nacional-coiba/",
+    "consulted": "2026-11-03",
+    "supports": "Acceso marítimo y Santa Catalina como punto de salida. No se incorporan precios ni duraciones."
+  }
+]
