@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/paths';
 import Layout from '../../layouts/Layout.astro';
 import { destinationStructuredData } from '../../lib/seo';
 import Photo from '../../components/Photo.astro';
@@ -26,15 +27,15 @@ const adminName = (field: typeof d.district) =>
   description={d.summary}
   structuredData={
     Astro.site
-      ? destinationStructuredData(d, new URL(`/destinos/${d.slug}/`, Astro.site).href)
+      ? destinationStructuredData(d, new URL(withBase(`/destinos/${d.slug}/`), Astro.site).href)
       : undefined
   }
 >
   <article class="container page-top">
     <nav class="crumbs" aria-label="Ruta de navegación">
-      <a href="/">Inicio</a>
+      <a href={withBase('/')}>Inicio</a>
       <span aria-hidden="true">/</span>
-      <a href="/explorar/">Destinos</a>
+      <a href={withBase('/explorar/')}>Destinos</a>
       <span aria-hidden="true">/</span>
       <span>{d.name}</span>
     </nav>
@@ -43,7 +44,7 @@ const adminName = (field: typeof d.district) =>
     <p class="lead">{d.summary}</p>
     <div class="tags">
       {d.categories.map((c) => (
-        <a class="badge" href={`/explorar/?categoria=${c}`}>
+        <a class="badge" href={withBase(`/explorar/?categoria=${c}`)}>
           {experiences.find((x) => x.id === c)?.name}
         </a>
       ))}
@@ -80,7 +81,7 @@ const adminName = (field: typeof d.district) =>
                 Latitud: {coords.lat} · Longitud: {coords.lng}
               </p>
               <div class="map-actions">
-                <a class="button" href={`/mapa/?destino=${d.id}`}>
+                <a class="button" href={withBase(`/mapa/?destino=${d.id}`)}>
                   Ver en el mapa ↗︎
                 </a>
                 {coords.kind === 'entrada' && (
@@ -116,7 +117,7 @@ const adminName = (field: typeof d.district) =>
           <dt>Provincia o comarca</dt>
           <dd>
             {d.regions.map((id) => (
-              <a class="region-link" href={`/regiones/${id}/`}>
+              <a class="region-link" href={withBase(`/regiones/${id}/`)}>
                 {regions.find((r) => r.id === id)!.name}
               </a>
             ))}
@@ -136,7 +137,7 @@ const adminName = (field: typeof d.district) =>
           />
         </dl>
         <p class="notice">Sin confirmar no significa gratuito, cerrado ni inexistente.</p>
-        <a href="/metodologia/">Cómo verificamos estos datos ↗︎</a>
+        <a href={withBase('/metodologia/')}>Cómo verificamos estos datos ↗︎</a>
       </aside>
     </div>
     <section class="section prose">

@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/paths';
 import Layout from '../../layouts/Layout.astro';
 import Photo from '../../components/Photo.astro';
 import DestinationCard from '../../components/DestinationCard.astro';
@@ -20,9 +21,9 @@ const parent = territories.find((t) => t.id === region.parentId);
 >
   <article class="container page-top">
     <nav class="crumbs" aria-label="Ruta de navegación">
-      <a href="/">Inicio</a>
+      <a href={withBase('/')}>Inicio</a>
       <span aria-hidden="true">/</span>
-      <a href="/#regiones">Regiones</a>
+      <a href={withBase('/#regiones')}>Regiones</a>
       <span aria-hidden="true">/</span>
       <span>{region.name}</span>
     </nav>
@@ -57,7 +58,7 @@ const parent = territories.find((t) => t.id === region.parentId);
         <h2>Descubre {region.name}</h2>
         <p>Destinos con fuentes consultadas para comenzar a explorar.</p>
       </div>
-      <a href={`/explorar/?region=${region.id}`} class="text-link">
+      <a href={withBase(`/explorar/?region=${region.id}`)} class="text-link">
         Buscar en esta región ↗︎
       </a>
     </div>
@@ -74,7 +75,7 @@ const parent = territories.find((t) => t.id === region.parentId);
           Estamos preparando el catálogo de esta región. No significa que no haya lugares por
           descubrir.
         </p>
-        <a href="/explorar/">Explorar otras regiones</a>
+        <a href={withBase('/explorar/')}>Explorar otras regiones</a>
       </div>
     )}
     <section class="prose section">

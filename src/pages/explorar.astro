@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import Layout from '../layouts/Layout.astro';
 import DestinationCard from '../components/DestinationCard.astro';
 import { getCatalog } from '../lib/catalog';
@@ -17,7 +18,7 @@ const index = createSearchIndex(destinations, territories);
     <p class="eyebrow">TU PRÓXIMO DESCUBRIMIENTO</p>
     <h1>Hay un Panamá para ti.</h1>
     <p class="lead">Busca un lugar, sigue una curiosidad y empieza a explorar.</p>
-    <form id="catalog-search" role="search" action="/explorar/">
+    <form id="catalog-search" role="search" action={withBase('/explorar/')}>
       <fieldset disabled class="search-fieldset">
         <legend class="sr-only">Buscar y filtrar destinos</legend>
         <div class="search-form">
@@ -81,7 +82,7 @@ const index = createSearchIndex(destinations, territories);
       <p id="result-count" role="status" aria-live="polite" aria-atomic="true">
         {destinations.length} destinos documentados
       </p>
-      <a id="clear-filters" href="/explorar/">
+      <a id="clear-filters" href={withBase('/explorar/')}>
         Limpiar filtros
       </a>
     </div>

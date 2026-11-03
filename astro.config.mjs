@@ -27,8 +27,13 @@ if (site) {
   )
     throw new Error('SITE_URL debe ser un origen HTTPS sin ruta ni credenciales.');
 }
+// Ruta base opcional (p. ej. GitHub Pages de proyecto: /blue-panama-turismo/).
+const base = process.env.BASE_PATH?.trim() || '/';
+if (!/^\/([a-z0-9-]+\/)*$/.test(base))
+  throw new Error('BASE_PATH debe empezar y terminar con "/" (p. ej. /blue-panama-turismo/).');
 export default defineConfig({
   output: 'static',
+  base,
   trailingSlash: 'always',
   site,
   integrations: site && indexable ? [sitemap({ filter: (page) => !page.endsWith('/404/') })] : [],

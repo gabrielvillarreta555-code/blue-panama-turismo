@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -11,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
     <p class="eyebrow">404 · CAMBIO DE RUMBO</p>
     <h1>Este camino no existe.</h1>
     <p>Podemos ayudarte a encontrar otro lugar.</p>
-    <a class="button" href="/explorar/">
+    <a class="button" href={withBase('/explorar/')}>
       Explorar destinos
     </a>
   </section>

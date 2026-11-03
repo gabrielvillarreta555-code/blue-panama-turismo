@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import Layout from '../layouts/Layout.astro';
 import { getCatalog } from '../lib/catalog';
 import { createMapPoints } from '../lib/map';
@@ -20,7 +21,7 @@ const points = createMapPoints(destinations);
     <p class="notice">
       Al cargar el mapa se solicitará cartografía a OpenStreetMap, que recibirá tu dirección IP y
       datos técnicos de conexión. No solicitamos tu ubicación.{' '}
-      <a href="/privacidad/">Conoce los detalles</a>.
+      <a href={withBase('/privacidad/')}>Conoce los detalles</a>.
     </p>
     <div class="map-actions">
       <button id="load-map" class="button" hidden>
@@ -57,13 +58,13 @@ const points = createMapPoints(destinations);
       <ul class="map-list">
         {points.map((p) => (
           <li>
-            <a href={`/destinos/${p.slug}/`}>{p.name}</a>
+            <a href={withBase(`/destinos/${p.slug}/`)}>{p.name}</a>
             <span>{p.note}</span>
           </li>
         ))}
       </ul>
       {!points.length && <p>No hay marcadores publicados. Puedes consultar el catálogo.</p>}
-      <a class="text-link" href="/explorar/">
+      <a class="text-link" href={withBase('/explorar/')}>
         Ver todos los destinos, también sin coordenadas ↗︎
       </a>
     </section>

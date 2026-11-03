@@ -1,5 +1,6 @@
 import type { Map as LeafletMap } from 'leaflet';
 import type { MapPoint } from '../lib/map';
+import { withBase } from '../lib/paths';
 const button = document.querySelector<HTMLButtonElement>('#load-map');
 const container = document.querySelector<HTMLElement>('#map');
 const status = document.querySelector<HTMLElement>('#map-status');
@@ -112,7 +113,7 @@ if (button && container && status && raw) {
             ? 'Referencia geográfica; no es una entrada.'
             : 'Punto de acceso verificado.';
         const link = document.createElement('a');
-        link.href = `/destinos/${point.slug}/`;
+        link.href = withBase(`/destinos/${point.slug}/`);
         link.textContent = 'Consultar ficha';
         content.append(title, note, link);
         const marker = L.marker([point.lat, point.lng], {

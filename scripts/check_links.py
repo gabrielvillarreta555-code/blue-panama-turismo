@@ -3,8 +3,12 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import posixpath
+import os
 import sys
 ROOT = Path('dist').resolve()
+# Base pública opcional (BASE_PATH), p. ej. /blue-panama-turismo/ en GitHub Pages.
+BASE = '/' + os.environ.get('BASE_PATH', '/').strip('/')
+BASE = '' if BASE == '/' else BASE
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.ids=set(); self.links=[]
@@ -25,6 +29,10 @@ for file,page in pages.items():
         url=urlsplit(href)
         if url.scheme or url.netloc:continue
         path=unquote(url.path)
+        if BASE and path.startswith('/'):
+            if path != BASE and not path.startswith(BASE + '/'):
+                count+=1;errors.append(f'{base}: outside base {href}');continue
+            path=path[len(BASE):] or '/'
         resolved=posixpath.normpath(path if path.startswith('/') else posixpath.join(posixpath.dirname(base),path)) if path else base
         target=ROOT/resolved.lstrip('/')
         if target.is_dir():target=target/'index.html'
